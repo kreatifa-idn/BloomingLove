@@ -1604,6 +1604,8 @@
 
             if (!elDays || !elHours || !elMinutes || !elSeconds) return;
 
+            let intervalId = null;
+
             function updateTimer() {
                 const now = new Date().getTime();
                 const diff = targetTime - now;
@@ -1613,7 +1615,7 @@
                     elHours.innerText = "00";
                     elMinutes.innerText = "00";
                     elSeconds.innerText = "00";
-                    clearInterval(intervalId);
+                    if (intervalId) clearInterval(intervalId);
                     return;
                 }
 
@@ -1629,7 +1631,7 @@
             }
 
             updateTimer();
-            const intervalId = setInterval(updateTimer, 1000);
+            intervalId = setInterval(updateTimer, 1000);
         }
 
         function salinNoRek(text, element) {
